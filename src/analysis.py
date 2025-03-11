@@ -50,3 +50,7 @@ plt.show()
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+
+# Selecting features (X) and target (y)
+X = df[['home_team_encoded', 'away_team_encoded', 'possession_home', 'possession_away', 'shots_home', 'shots_away', 'passes_home', 'passes_away']]
+y = df['result']
