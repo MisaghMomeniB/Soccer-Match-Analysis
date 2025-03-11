@@ -21,3 +21,5 @@ df['result'] = df.apply(lambda row: 1 if row['home_goals'] > row['away_goals'] e
 print(df[['home_team', 'away_team', 'home_team_encoded', 'away_team_encoded', 'result']].head())
 
 # Exploratory Data Analysis (EDA)
+import matplotlib.pyplot as plt
+import seaborn as sns
