@@ -35,3 +35,9 @@ sns.boxplot(x='result', y='shots_home', data=df, ax=axes[0, 0])
 sns.boxplot(x='result', y='shots_away', data=df, ax=axes[0, 1])
 axes[0, 0].set_title('Home Team Shots vs. Match Result')
 axes[0, 1].set_title('Away Team Shots vs. Match Result')
+
+# Boxplot for possession percentage vs. match result
+sns.boxplot(x='result', y='possession_home', data=df, ax=axes[1, 0])
+sns.boxplot(x='result', y='possession_away', data=df, ax=axes[1, 1])
+axes[1, 0].set_title('Home Team Possession vs. Match Result')
+axes[1, 1].set_title('Away Team Possession vs. Match Result')
