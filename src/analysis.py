@@ -29,3 +29,9 @@ sns.set(style="whitegrid")
 
 # Create subplots for visualizing different factors
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+
+# Boxplot for home team shots vs. match result
+sns.boxplot(x='result', y='shots_home', data=df, ax=axes[0, 0])
+sns.boxplot(x='result', y='shots_away', data=df, ax=axes[0, 1])
+axes[0, 0].set_title('Home Team Shots vs. Match Result')
+axes[0, 1].set_title('Away Team Shots vs. Match Result')
