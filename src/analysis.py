@@ -8,3 +8,8 @@ df = pd.read_csv("soccer_matches.csv")
 # Display the first few rows and dataset info
 print(df.head())
 print(df.info())
+
+# Encode team names to numeric values (Home and Away teams)
+label_encoder = LabelEncoder()
+df['home_team_encoded'] = label_encoder.fit_transform(df['home_team'])
+df['away_team_encoded'] = label_encoder.fit_transform(df['away_team'])
