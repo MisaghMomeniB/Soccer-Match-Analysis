@@ -71,3 +71,6 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 # Build a Random Forest model
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train_scaled, y_train)
+
+# Predict the results on the test set
+y_pred = model.predict(X_test_scaled)
