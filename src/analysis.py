@@ -41,3 +41,7 @@ sns.boxplot(x='result', y='possession_home', data=df, ax=axes[1, 0])
 sns.boxplot(x='result', y='possession_away', data=df, ax=axes[1, 1])
 axes[1, 0].set_title('Home Team Possession vs. Match Result')
 axes[1, 1].set_title('Away Team Possession vs. Match Result')
+
+# Adjust the layout for better display
+plt.tight_layout()
+plt.show()
