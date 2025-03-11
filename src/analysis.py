@@ -74,3 +74,11 @@ model.fit(X_train_scaled, y_train)
 
 # Predict the results on the test set
 y_pred = model.predict(X_test_scaled)
+
+# Evaluate the model performance
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy * 100:.2f}%")
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
