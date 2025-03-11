@@ -54,3 +54,6 @@ from sklearn.preprocessing import StandardScaler
 # Selecting features (X) and target (y)
 X = df[['home_team_encoded', 'away_team_encoded', 'possession_home', 'possession_away', 'shots_home', 'shots_away', 'passes_home', 'passes_away']]
 y = df['result']
+
+# Splitting the data into training and test sets (80% train, 20% test)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
