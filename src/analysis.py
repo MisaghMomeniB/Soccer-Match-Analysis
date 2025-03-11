@@ -26,3 +26,6 @@ import seaborn as sns
 
 # Set up the plotting style
 sns.set(style="whitegrid")
+
+# Create subplots for visualizing different factors
+fig, axes = plt.subplots(2, 2, figsize=(14, 10))
