@@ -1,5 +1,3 @@
-Sure! Here’s a detailed and engaging `README.md` file for your GitHub project:
-
 ---
 
 # Football-Match-Outcome-Prediction ⚽️
