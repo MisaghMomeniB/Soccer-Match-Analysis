@@ -23,3 +23,6 @@ print(df[['home_team', 'away_team', 'home_team_encoded', 'away_team_encoded', 'r
 # Exploratory Data Analysis (EDA)
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+# Set up the plotting style
+sns.set(style="whitegrid")
