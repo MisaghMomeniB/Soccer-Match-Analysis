@@ -13,3 +13,6 @@ print(df.info())
 label_encoder = LabelEncoder()
 df['home_team_encoded'] = label_encoder.fit_transform(df['home_team'])
 df['away_team_encoded'] = label_encoder.fit_transform(df['away_team'])
+
+# Calculate match result (1 = Home win, 0 = Draw, -1 = Away win)
+df['result'] = df.apply(lambda row: 1 if row['home_goals'] > row['away_goals'] else (0 if row['home_goals'] == row['away_goals'] else -1), axis=1)
