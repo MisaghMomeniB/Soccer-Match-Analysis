@@ -45,3 +45,8 @@ axes[1, 1].set_title('Away Team Possession vs. Match Result')
 # Adjust the layout for better display
 plt.tight_layout()
 plt.show()
+
+#  Preparing Data for Modeling
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
