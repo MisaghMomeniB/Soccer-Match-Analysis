@@ -82,3 +82,16 @@ print("\nClassification Report:")
 print(classification_report(y_test, y_pred))
 print("\nConfusion Matrix:")
 print(confusion_matrix(y_test, y_pred))
+
+# Displaying Results and Model Evaluation
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Create and display the confusion matrix
+cm = confusion_matrix(y_test, y_pred)
+sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", xticklabels=["Home Win", "Draw", "Away Win"], yticklabels=["Home Win", "Draw", "Away Win"])
+plt.title("Confusion Matrix")
+plt.xlabel("Predicted")
+plt.ylabel("True")
+plt.show()
