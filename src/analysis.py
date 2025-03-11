@@ -19,3 +19,5 @@ df['result'] = df.apply(lambda row: 1 if row['home_goals'] > row['away_goals'] e
 
 # Display the transformed data with encoded teams and match results
 print(df[['home_team', 'away_team', 'home_team_encoded', 'away_team_encoded', 'result']].head())
+
+# Exploratory Data Analysis (EDA)
