@@ -67,3 +67,7 @@ X_test_scaled = scaler.transform(X_test)
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+# Build a Random Forest model
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train_scaled, y_train)
