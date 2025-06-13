@@ -1,106 +1,130 @@
+# ⚽ Soccer Match Analysis
+
+A Python-based project designed to **analyze soccer match data** and extract meaningful insights. It supports event processing, performance metrics, visualization, and automatic reporting on team and player performance.
+
 ---
 
-# Football-Match-Outcome-Prediction ⚽️
+## 📋 Table of Contents
 
-This project predicts the outcomes of football matches (home win, away win, or draw) using machine learning techniques. By leveraging historical match data, we train a Random Forest model to classify match results based on features like shots, possession, and passes. 
+1. [Overview](#overview)  
+2. [Features](#features)  
+3. [Data & Approach](#data--approach)  
+4. [Getting Started](#getting-started)  
+5. [Usage Examples](#usage-examples)  
+6. [Visualization & Reporting](#visualization--reporting)  
+7. [Tech Stack](#tech-stack)  
+8. [Contributing](#contributing)  
+9. [License](#license)
 
-## Project Overview 📊
+---
 
-Football matches have unpredictable outcomes, but by analyzing historical data, we can make informed predictions. In this project, we use data from various football games to predict the result of future matches. The core steps of this project include data preprocessing, exploratory data analysis (EDA), model training, and evaluation.
+## 💡 Overview
 
-### Features in the Dataset 🏟️:
-- **home_team**: Name of the home team.
-- **away_team**: Name of the away team.
-- **home_goals**: Number of goals scored by the home team.
-- **away_goals**: Number of goals scored by the away team.
-- **shots_home**: Number of shots by the home team.
-- **shots_away**: Number of shots by the away team.
-- **possession_home**: Possession percentage of the home team.
-- **possession_away**: Possession percentage of the away team.
-- **passes_home**: Number of passes by the home team.
-- **passes_away**: Number of passes by the away team.
+This repository is aimed at processing **soccer match event data** to generate performance metrics—pass accuracy, shots on target, possession rates, heatmaps—and visual reports. It can be used for analytics, coaching insights, or personal study.
 
-## How It Works 🔍
+---
 
-1. **Data Preprocessing**:
-   - We load the dataset and convert categorical data (team names) into numeric values.
-   - We then calculate the result of the match (home win, away win, or draw) based on the goals scored by both teams.
+## ✅ Features
 
-2. **Exploratory Data Analysis (EDA)**:
-   - We explore relationships between match statistics (like shots and possession) and match outcomes using **boxplots**.
+- 📥 Parse/clean soccer event data (passes, shots, fouls, etc.)  
+- 📉 Compute per-match and per-player statistics (accuracy, efficiency, involvement)  
+- 📊 Visual outputs: bar charts, line graphs, heatmaps  
+- 🔄 Comparative analysis between teams or players  
+- 🧠 Optional ML clustering of playing styles or event patterns
 
-3. **Model Building**:
-   - We build a **Random Forest model** using the selected features to predict the match outcome.
-   - The model is trained on historical data, and the accuracy of the predictions is evaluated on test data.
+---
 
-4. **Evaluation**:
-   - We assess the model’s performance using **accuracy score**, **classification report**, and **confusion matrix**.
+## 🗂️ Data & Approach
 
-## Steps to Run the Project ⚙️
+- **Input data**: CSV or JSON with event-level details (timestamp, event type, position, player/team ID)  
+- **Cleaning**: Standardize missing values, convert coordinates to suitable ranges  
+- **Aggregation**: Compute:
+  - Pass success rate = passes completed / passes attempted
+  - Shots on target vs total shots
+  - Possession % measured through event duration  
+- **Output**:  
+  - Tables (CSV/JSON) with aggregated metrics  
+  - Visualizations (PNG/interactive HTML)
 
-### 1. Clone the repository:
+---
+
+## ⚙️ Getting Started
+
+### Setup environment
+
 ```bash
-git clone https://github.com/your-username/Football-Match-Outcome-Prediction.git
-```
-
-### 2. Install Dependencies:
-Make sure to have Python installed, and then install the necessary dependencies:
-```bash
+git clone https://github.com/MisaghMomeniB/Soccer-Match-Analysis.git
+cd Soccer-Match-Analysis
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
-```
+````
 
-### 3. Run the Code:
-Run the `football_prediction.py` script to start the analysis:
+### Prepare your data
+
+* Ensure `data/` folder contains `match_events.csv` (or `.json`)
+* File must include columns like: `match_id, team_id, player_id, event_type, x, y, timestamp`
+
+---
+
+## 🚀 Usage Examples
+
+### 🧮 Generate Metrics
+
 ```bash
-python football_prediction.py
+python src/analyze_match.py --input data/match_events.csv --output reports/match_summary.json
 ```
 
-## Code Explanation 📜
+This produces match and player statistics in JSON or CSV format.
 
-### 1. **Loading and Preprocessing Data**:
-```python
-df = pd.read_csv("soccer_matches.csv")
-label_encoder = LabelEncoder()
-df['home_team_encoded'] = label_encoder.fit_transform(df['home_team'])
-df['away_team_encoded'] = label_encoder.fit_transform(df['away_team'])
-df['result'] = df.apply(lambda row: 1 if row['home_goals'] > row['away_goals'] else (0 if row['home_goals'] == row['away_goals'] else -1), axis=1)
+### 📊 Create Visualizations
+
+```bash
+python src/plot_heatmap.py --input reports/match_summary.json --player 10
 ```
-We load the CSV file containing historical match data and then encode the team names into numerical values. We also calculate the result of each match, where `1` represents a home win, `0` is a draw, and `-1` represents an away win.
 
-### 2. **Exploratory Data Analysis (EDA)**:
-```python
-sns.boxplot(x='result', y='shots_home', data=df)
-sns.boxplot(x='result', y='possession_home', data=df)
-```
-Here, we visualize how different match statistics (like shots and possession) are related to match outcomes using **boxplots**.
-
-### 3. **Model Building and Prediction**:
-```python
-model = RandomForestClassifier(n_estimators=100, random_state=42)
-model.fit(X_train_scaled, y_train)
-y_pred = model.predict(X_test_scaled)
-```
-We build a **Random Forest classifier** to predict the match outcome based on the features. After training the model, we use it to make predictions on the test data.
-
-### 4. **Model Evaluation**:
-```python
-accuracy = accuracy_score(y_test, y_pred)
-print(f"Accuracy: {accuracy * 100:.2f}%")
-```
-We evaluate the performance of the model by calculating the **accuracy score** and displaying the **classification report** and **confusion matrix**.
-
-## Results 📈
-
-- **Accuracy**: The model's accuracy on the test data.
-- **Classification Report**: Provides precision, recall, and F1-score for each class (home win, draw, away win).
-- **Confusion Matrix**: Shows how many times the model predicted each class correctly or incorrectly.
-
-## Conclusion 💡
-
-By analyzing match statistics such as shots, possession, and passes, the model can predict football match outcomes with a reasonable degree of accuracy. This project demonstrates how machine learning can be applied to sports analytics to predict future events based on historical data.
+Generates a positional heatmap for player ID 10.
 
 ---
 
-**Feel free to contribute, provide feedback, or improve the model!** 🙌
+## 📈 Visualization & Reporting
+
+All plot scripts generate:
+
+* **Heatmaps** showing player movement and concentration
+* **Bar charts** for pass accuracy, shot efficiency, possession
+* **Line charts** for time-series trends (e.g., possession over match time)
+
+Reports saved to `reports/` with filenames like `team_comparison.png`.
 
 ---
+
+## 🛠️ Tech Stack
+
+* **Python 3.8+**
+* **pandas**, **NumPy** for data processing
+* **Matplotlib**, **Seaborn**, **Plotly** for plotting
+* **Jupyter Notebooks** for exploratory analysis
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Suggestions include:
+
+* Add support for **multiple match files** and season-level aggregation
+* Support for **live data feeds** or event APIs (e.g., StatsBomb, Opta)
+* Include **interactive dashboards** (Streamlit, Dash)
+* Add **machine learning models** to predict outcomes or player roles
+
+To Contribute:
+
+1. Fork the repository
+2. Create a branch (`feature/...`)
+3. Open a Pull Request with your changes
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See `LICENSE` for details.
